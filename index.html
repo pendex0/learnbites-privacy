@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политика за поверителност — LearnBites</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    color: #1a1a1a;
+    background: #fdfcf8;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e8e6e1; background: #161614; }
+    a { color: #8ab4f8; }
+    hr { border-color: #3a3a36; }
+    .meta { color: #9a978f; }
+  }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .25rem; }
+  h2 { font-size: 1.15rem; margin: 2.25rem 0 .5rem; }
+  .meta { color: #6b6862; font-size: .9rem; margin: 0 0 2rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .4rem 0; }
+  hr { border: 0; border-top: 1px solid #ddd9d0; margin: 3.5rem 0; }
+  .lang { font-size: .9rem; margin-bottom: 2rem; }
+  code { font-size: .9em; background: rgba(128,128,128,.15); padding: .1em .35em; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>Политика за поверителност — LearnBites</h1>
+<p class="meta">Последна промяна: 12 август 2026 г.</p>
+<p class="lang"><a href="#english">Read this in English ↓</a></p>
+
+<p>
+  LearnBites (пакет <code>dev.dimitrovd.learnbites</code>) е приложение, направено от
+  <strong>Добромир Димитров</strong>, частно лице, за собствената му дъщеря и за малък кръг
+  тестери. Не е търговски продукт. Този документ описва какво прави приложението с данните на
+  човека, който го използва.
+</p>
+<p>
+  Приложението работи така: детето натиска микрофона, задава въпрос на глас, а приложението
+  отговаря с текст и рисунка. Всичко, което следва, произтича от този един ход.
+</p>
+
+<h2>Какво събира приложението</h2>
+<ul>
+  <li><strong>Запис на гласа.</strong> Докато микрофонът е активен, приложението записва звука.</li>
+  <li><strong>Текста на въпроса</strong>, получен от разпознаването на речта.</li>
+  <li><strong>Въпросите и отговорите</strong>, заедно с момента, в който са зададени.</li>
+</ul>
+<p>
+  Приложението <strong>не</strong> иска и не съхранява име, имейл, адрес, дата на раждане,
+  телефонен номер, местоположение, контакти, снимки или какъвто и да е акаунт. Няма регистрация и
+  няма вход. Приложението не знае кой го използва.
+</p>
+
+<h2>Къде отиват данните</h2>
+<ul>
+  <li>
+    <strong>Гласът отива при услугата за разпознаване на реч на телефона</strong> — на устройствата,
+    за които е предназначено приложението, това е услугата на Google. Приложението иска онлайн
+    разпознаване, защото за български език няма модел, който да работи офлайн на телефона. Това
+    означава, че записаният глас се изпраща към сървърите на Google, за да бъде превърнат в текст.
+    Какво прави Google с него, се урежда от политиката за поверителност на Google.
+  </li>
+  <li>
+    <strong>Текстът на въпроса отива при Anthropic</strong> (<code>api.anthropic.com</code>, САЩ),
+    която генерира отговора и рисунката. Изпраща се само текстът на въпроса — не се изпраща запис,
+    име или каквото и да е, което идентифицира детето. Указанията, които приложението дава на
+    модела, изрично му забраняват да пита кой е насреща.
+  </li>
+</ul>
+<p>Няма друг получател. Никакви данни не се продават, не се дават под наем и не се предоставят на рекламодатели.</p>
+
+<h2>Какво остава на телефона</h2>
+<ul>
+  <li>
+    <strong>Историята</strong> — последните до 30 въпроса с отговорите им — се пази във вътрешната
+    памет на приложението, за да може детето да се върне към нещо, което вече е видяло.
+  </li>
+  <li>
+    <strong>Записите на гласа</strong> се пазят като WAV файлове в папката на приложението
+    (<code>Android/data/dev.dimitrovd.learnbites/files/</code>). Пазят се най-много 40 файла или
+    20 MB — при всяко стартиране на приложението по-старите се изтриват автоматично.
+  </li>
+  <li>
+    <strong>Копие от историята</strong> се записва в същата папка като текстов файл.
+  </li>
+</ul>
+<p>
+  Записите и копието на историята съществуват по една причина: когато приложението отговори грешно,
+  разработчикът трябва да може да чуе какво всъщност е било казано, за да разбере дали е сгрешил
+  моделът или телефонът е чул погрешно. <strong>Това означава, че разработчикът може да свърже
+  телефона с кабел и да прослуша тези записи.</strong> Записано е тук, защото е вярно, а не защото
+  е незабележимо.
+</p>
+
+<h2>Какво приложението не прави</h2>
+<ul>
+  <li>Няма реклами и няма рекламни мрежи.</li>
+  <li>Няма анализ на поведението, няма проследяване, няма рекламен идентификатор.</li>
+  <li>Няма акаунти, няма профили, няма синхронизация между устройства.</li>
+  <li>Няма чат с други хора. Детето не може да се свърже с никого през приложението.</li>
+  <li>Нищо не се публикува и нищо не се вижда от други потребители.</li>
+</ul>
+
+<h2>Деца</h2>
+<p>
+  Приложението е направено за дете и се използва от дете. Точно затова тук няма събиране на лични
+  данни отвъд необходимото, за да бъде отговорен въпросът: без име, без акаунт, без проследяване и
+  без реклами. Приложението се разпространява само през затворено вътрешно тестване към списък от
+  сметки, определени от разработчика — то не е публично достъпно.
+</p>
+<p>
+  Инсталирането на приложението на устройство под родителски контрол (Family Link) изисква одобрение
+  от родителя.
+</p>
+
+<h2>Изтриване на данните</h2>
+<p>
+  Всичко, което приложението пази, се намира на самия телефон. <strong>Деинсталирането на
+  приложението изтрива всичко</strong> — историята и записите заедно с нея. Може и само част:
+  папката <code>Android/data/dev.dimitrovd.learnbites/</code> може да бъде изтрита през файловия
+  мениджър на телефона.
+</p>
+<p>
+  Данните, които вече са стигнали до Google и Anthropic, се управляват от техните политики; за
+  въпроси по тях пишете на адреса по-долу и ще помогна с каквото мога.
+</p>
+
+<h2>Промени в тази политика</h2>
+<p>
+  Приложението е в ранна разработка и начинът, по който изпраща въпросите, ще се промени — планирано
+  е обръщенията към Anthropic да минават през междинен сървър вместо директно от телефона. Когато
+  това стане, този документ ще бъде обновен и датата най-горе ще се промени.
+</p>
+
+<h2>Контакт</h2>
+<p>
+  Добромир Димитров — <a href="mailto:dev.dimitrovd@gmail.com">dev.dimitrovd@gmail.com</a>
+</p>
+
+<hr>
+
+<h1 id="english">Privacy Policy — LearnBites</h1>
+<p class="meta">Last updated: 12 August 2026</p>
+
+<p>
+  LearnBites (package <code>dev.dimitrovd.learnbites</code>) is an app made by
+  <strong>Dobromir Dimitrov</strong>, an individual, for his own daughter and a small group of
+  testers. It is not a commercial product. This document describes what the app does with the data
+  of the person using it.
+</p>
+<p>
+  The app works like this: the child presses the microphone, asks a question out loud, and the app
+  answers with text and a drawing. Everything below follows from that single action.
+</p>
+
+<h2>What the app collects</h2>
+<ul>
+  <li><strong>A recording of the voice.</strong> While the microphone is active, the app records the audio.</li>
+  <li><strong>The text of the question</strong>, as produced by speech recognition.</li>
+  <li><strong>The questions and answers</strong>, together with the time they were asked.</li>
+</ul>
+<p>
+  The app does <strong>not</strong> ask for or store a name, email address, postal address, date of
+  birth, phone number, location, contacts, photos, or any account. There is no sign-up and no
+  sign-in. The app does not know who is using it.
+</p>
+
+<h2>Where the data goes</h2>
+<ul>
+  <li>
+    <strong>The voice goes to the phone's speech recognition service</strong> — on the devices this
+    app is meant for, that is Google's. The app requests online recognition because there is no
+    Bulgarian model that runs offline on the phone. This means the recorded speech is sent to
+    Google's servers to be turned into text. What Google does with it is governed by Google's own
+    privacy policy.
+  </li>
+  <li>
+    <strong>The text of the question goes to Anthropic</strong> (<code>api.anthropic.com</code>, USA),
+    which generates the answer and the drawing. Only the question text is sent — no recording, no
+    name, and nothing that identifies the child. The instructions the app gives the model explicitly
+    forbid it from asking who it is talking to.
+  </li>
+</ul>
+<p>No one else receives anything. No data is sold, rented, or given to advertisers.</p>
+
+<h2>What stays on the phone</h2>
+<ul>
+  <li>
+    <strong>The history</strong> — the most recent 30 questions and their answers — is kept in the
+    app's own storage so the child can go back to something already seen.
+  </li>
+  <li>
+    <strong>The voice recordings</strong> are kept as WAV files in the app's folder
+    (<code>Android/data/dev.dimitrovd.learnbites/files/</code>). At most 40 files or 20 MB are kept;
+    older ones are deleted automatically each time the app starts.
+  </li>
+  <li>
+    <strong>A copy of the history</strong> is written to the same folder as a text file.
+  </li>
+</ul>
+<p>
+  The recordings and the history copy exist for one reason: when the app answers badly, the developer
+  needs to be able to hear what was actually said, to tell whether the model was wrong or the phone
+  misheard. <strong>This means the developer can connect the phone by cable and listen to those
+  recordings.</strong> It is written down here because it is true, not because it is unnoticeable.
+</p>
+
+<h2>What the app does not do</h2>
+<ul>
+  <li>No advertising and no ad networks.</li>
+  <li>No behavioural analytics, no tracking, no advertising identifier.</li>
+  <li>No accounts, no profiles, no syncing between devices.</li>
+  <li>No chat with other people. The child cannot reach anyone through the app.</li>
+  <li>Nothing is published and nothing is visible to other users.</li>
+</ul>
+
+<h2>Children</h2>
+<p>
+  This app is made for a child and used by a child. That is exactly why it collects no personal data
+  beyond what is needed to answer the question: no name, no account, no tracking, and no ads. It is
+  distributed only through closed internal testing to a list of accounts chosen by the developer — it
+  is not publicly available.
+</p>
+<p>
+  Installing the app on a device under parental supervision (Family Link) requires the parent's
+  approval.
+</p>
+
+<h2>Deleting the data</h2>
+<p>
+  Everything the app keeps is on the phone itself. <strong>Uninstalling the app deletes all of
+  it</strong> — the history and the recordings with it. Part of it can be removed on its own: the
+  folder <code>Android/data/dev.dimitrovd.learnbites/</code> can be deleted through the phone's file
+  manager.
+</p>
+<p>
+  Data that has already reached Google and Anthropic is governed by their policies; for questions
+  about it, write to the address below and I will help where I can.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  The app is in early development and the way it sends questions will change — the calls to Anthropic
+  are planned to go through an intermediate server rather than directly from the phone. When that
+  happens, this document will be updated and the date at the top will change.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Dobromir Dimitrov — <a href="mailto:dev.dimitrovd@gmail.com">dev.dimitrovd@gmail.com</a>
+</p>
+
+</body>
+</html>
