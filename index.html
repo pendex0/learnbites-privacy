@@ -33,7 +33,7 @@
 <body>
 
 <h1>Политика за поверителност — LearnBites</h1>
-<p class="meta">Последна промяна: 12 август 2026 г.</p>
+<p class="meta">Последна промяна: 16 август 2026 г.</p>
 <p class="lang"><a href="#english">Read this in English ↓</a></p>
 
 <p>
@@ -60,6 +60,7 @@
 </p>
 
 <h2>Къде отиват данните</h2>
+<p>Въпросът минава през две спирки, преди да се върне отговор. И двете са описани тук.</p>
 <ul>
   <li>
     <strong>Гласът отива при услугата за разпознаване на реч на телефона</strong> — на устройствата,
@@ -69,13 +70,66 @@
     Какво прави Google с него, се урежда от политиката за поверителност на Google.
   </li>
   <li>
-    <strong>Текстът на въпроса отива при Anthropic</strong> (<code>api.anthropic.com</code>, САЩ),
-    която генерира отговора и рисунката. Изпраща се само текстът на въпроса — не се изпраща запис,
-    име или каквото и да е, което идентифицира детето. Указанията, които приложението дава на
-    модела, изрично му забраняват да пита кой е насреща.
+    <strong>Текстът на въпроса отива първо при сървър, който разработчикът поддържа сам</strong>
+    (<code>api.learnbites.dimitrovd.dev</code>). Този сървър проверява дали заявката идва от
+    приложението и дали е с допустим размер и вид, и я предава нататък непроменена. Той
+    <strong>не чете въпроса и не го записва никъде</strong> — какво точно записва и какво не,
+    пише в следващия раздел.
+  </li>
+  <li>
+    <strong>Оттам въпросът отива при Anthropic</strong>, която генерира отговора и рисунката.
+    Изпраща се само текстът на въпроса — не се изпраща запис на гласа, име или каквото и да е,
+    което идентифицира детето. Указанията, които приложението дава на модела, изрично му забраняват
+    да пита кой е насреща.
   </li>
 </ul>
-<p>Няма друг получател. Никакви данни не се продават, не се дават под наем и не се предоставят на рекламодатели.</p>
+<p>
+  <strong>Въпросът може да бъде обработен извън Европейския съюз.</strong> Anthropic е дружество
+  със седалище в САЩ и обработва заявките в регион по свой избор. Междинният сървър се намира във
+  Франкфурт, но това <strong>не</strong> означава, че данните остават в Европа и не бива да се чете
+  така — той само предава заявката нататък и няма контрол върху това къде отива тя. Какво прави
+  Anthropic с нея, се урежда от политиката за поверителност на Anthropic.
+</p>
+<p>
+  Освен изброените, никой друг не получава въпросите. Машините на междинния сървър се предоставят
+  от хостинг платформата <strong>Fly.io</strong>, а DNS на домейна е при <strong>Cloudflare</strong>
+  — нарочно настроен така, че Cloudflare само превежда името на адрес, без да пренася и без да
+  разчита самите заявки. Никакви данни не се продават, не се дават под наем и не се предоставят на
+  рекламодатели.
+</p>
+
+<h2>Какво записва междинният сървър</h2>
+<p>
+  Този сървър съществува по една причина: ключът, с който се плащат отговорите, вече не е вътре в
+  приложението на телефона, а стои на сървъра. Това е промяна в полза на сигурността, но тя вкарва
+  още една спирка по пътя на въпроса — затова тук пише точно какво тази спирка вижда и какво пази.
+</p>
+<p>За всяка заявка се записва <strong>един ред</strong>, който съдържа:</p>
+<ul>
+  <li>момента на заявката;</li>
+  <li>адреса на крайната точка (една-единствена, приложението не използва друга);</li>
+  <li>дали проверката на достъпа е минала;</li>
+  <li>какъв е бил отговорът отсреща — числов код;</li>
+  <li>колко е продължила заявката;</li>
+  <li>и когато самият сървър е отказал заявката — коя от собствените му проверки я е отказала.</li>
+</ul>
+<p>
+  <strong>Този ред не съдържа въпроса, отговора, рисунката или указанията към модела</strong> — нито
+  в съкратен вид, нито в текст на грешка, на никакво ниво и в никаква среда. Сървърът е написан така,
+  че да не разчита съдържанието на заявката изобщо: от нея се четат само две технически полета, а
+  всичко останало се прескача, без да бъде разгледано.
+</p>
+<p>
+  <strong>IP адресът се записва само когато проверката на достъпа е неуспешна</strong> — тоест
+  когато заявката идва от нещо, което не е приложението. При успешна заявка адрес не се записва
+  изобщо.
+</p>
+<p>
+  Сървърът няма база данни и не пази нищо между отделните заявки. Редовете живеят само в дневника на
+  хостинг платформата, който ги пази около <strong>седем дни</strong>, и след това ги няма. Нищо не
+  ги събира и не ги препраща другаде — няма система за архивиране на дневници и нищо не се натрупва
+  на второ място.
+</p>
 
 <h2>Какво остава на телефона</h2>
 <ul>
@@ -129,15 +183,20 @@
   мениджър на телефона.
 </p>
 <p>
+  На междинния сървър няма какво да се изтрива: там не се пази нищо от съдържанието на въпросите, а
+  техническите редове, описани по-горе, изчезват сами след около седмица.
+</p>
+<p>
   Данните, които вече са стигнали до Google и Anthropic, се управляват от техните политики; за
   въпроси по тях пишете на адреса по-долу и ще помогна с каквото мога.
 </p>
 
 <h2>Промени в тази политика</h2>
 <p>
-  Приложението е в ранна разработка и начинът, по който изпраща въпросите, ще се промени — планирано
-  е обръщенията към Anthropic да минават през междинен сървър вместо директно от телефона. Когато
-  това стане, този документ ще бъде обновен и датата най-горе ще се промени.
+  До август 2026 г. приложението изпращаше въпросите директно от телефона към Anthropic. Вече не:
+  между телефона и Anthropic стои сървърът, описан по-горе. Този документ беше пренаписан заради
+  тази промяна и датата най-горе е датата на пренаписването. При всяка следваща промяна в начина, по
+  който въпросите пътуват, документът се обновява и датата се променя отново.
 </p>
 
 <h2>Контакт</h2>
@@ -148,7 +207,7 @@
 <hr>
 
 <h1 id="english">Privacy Policy — LearnBites</h1>
-<p class="meta">Last updated: 12 August 2026</p>
+<p class="meta">Last updated: 16 August 2026</p>
 
 <p>
   LearnBites (package <code>dev.dimitrovd.learnbites</code>) is an app made by
@@ -174,6 +233,7 @@
 </p>
 
 <h2>Where the data goes</h2>
+<p>A question passes through two stops before an answer comes back. Both are described here.</p>
 <ul>
   <li>
     <strong>The voice goes to the phone's speech recognition service</strong> — on the devices this
@@ -183,13 +243,67 @@
     privacy policy.
   </li>
   <li>
-    <strong>The text of the question goes to Anthropic</strong> (<code>api.anthropic.com</code>, USA),
-    which generates the answer and the drawing. Only the question text is sent — no recording, no
-    name, and nothing that identifies the child. The instructions the app gives the model explicitly
-    forbid it from asking who it is talking to.
+    <strong>The text of the question goes first to a server the developer runs himself</strong>
+    (<code>api.learnbites.dimitrovd.dev</code>). That server checks that the request came from the
+    app and that it is of an acceptable size and shape, and passes it on unchanged. It
+    <strong>does not read the question and does not record it anywhere</strong> — what it does and
+    does not write down is the next section.
+  </li>
+  <li>
+    <strong>From there the question goes to Anthropic</strong>, which generates the answer and the
+    drawing. Only the question text is sent — no voice recording, no name, and nothing that
+    identifies the child. The instructions the app gives the model explicitly forbid it from asking
+    who it is talking to.
   </li>
 </ul>
-<p>No one else receives anything. No data is sold, rented, or given to advertisers.</p>
+<p>
+  <strong>The question may be processed outside the European Union.</strong> Anthropic is a company
+  based in the USA and processes requests in whichever region it chooses. The intermediate server is
+  located in Frankfurt, but that does <strong>not</strong> mean the data stays in Europe and should
+  not be read that way — the server only passes the request on and has no control over where it goes
+  next. What Anthropic does with it is governed by Anthropic's own privacy policy.
+</p>
+<p>
+  Beyond those named above, nobody else receives the questions. The machines the intermediate server
+  runs on are provided by the hosting platform <strong>Fly.io</strong>, and the domain's DNS is at
+  <strong>Cloudflare</strong> — deliberately configured so that Cloudflare only translates the name
+  into an address, without carrying and without decrypting the requests themselves. No data is sold,
+  rented, or given to advertisers.
+</p>
+
+<h2>What the intermediate server records</h2>
+<p>
+  That server exists for one reason: the credential that pays for the answers is no longer inside the
+  app on the phone, but sits on the server instead. That is a change for the better in terms of
+  security, but it puts one more stop on the question's path — so what that stop sees and what it
+  keeps is written out here exactly.
+</p>
+<p>For each request, <strong>a single line</strong> is written, containing:</p>
+<ul>
+  <li>the time of the request;</li>
+  <li>the endpoint it was addressed to (there is only one; the app uses no other);</li>
+  <li>whether the access check passed;</li>
+  <li>what the answer from the other side was — a numeric status code;</li>
+  <li>how long the request took;</li>
+  <li>and, when the server itself refused the request, which of its own checks refused it.</li>
+</ul>
+<p>
+  <strong>That line does not contain the question, the answer, the drawing, or the instructions given
+  to the model</strong> — not in shortened form, not inside an error message, at no level and in no
+  environment. The server is written so that it does not read the content of a request at all: only
+  two technical fields are taken from it, and everything else is stepped over without being looked at.
+</p>
+<p>
+  <strong>The IP address is recorded only when the access check fails</strong> — that is, when the
+  request came from something that is not the app. On a successful request, no address is recorded at
+  all.
+</p>
+<p>
+  The server has no database and keeps nothing between one request and the next. The lines live only
+  in the hosting platform's own log view, which keeps them for about <strong>seven days</strong>, and
+  then they are gone. Nothing collects them and nothing forwards them elsewhere — there is no log
+  shipping system, and nothing accumulates in a second place.
+</p>
 
 <h2>What stays on the phone</h2>
 <ul>
@@ -242,15 +356,20 @@
   manager.
 </p>
 <p>
+  On the intermediate server there is nothing to delete: none of the content of the questions is kept
+  there, and the technical lines described above disappear on their own after about a week.
+</p>
+<p>
   Data that has already reached Google and Anthropic is governed by their policies; for questions
   about it, write to the address below and I will help where I can.
 </p>
 
 <h2>Changes to this policy</h2>
 <p>
-  The app is in early development and the way it sends questions will change — the calls to Anthropic
-  are planned to go through an intermediate server rather than directly from the phone. When that
-  happens, this document will be updated and the date at the top will change.
+  Until August 2026 the app sent questions directly from the phone to Anthropic. It no longer does:
+  the server described above now stands between the phone and Anthropic. This document was rewritten
+  because of that change, and the date at the top is the date of the rewrite. Any further change to
+  the way questions travel updates this document and moves that date again.
 </p>
 
 <h2>Contact</h2>
