@@ -22,6 +22,7 @@
   }
   h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .25rem; }
   h2 { font-size: 1.15rem; margin: 2.25rem 0 .5rem; }
+  h3 { font-size: 1rem; margin: 1.75rem 0 .4rem; }
   .meta { color: #6b6862; font-size: .9rem; margin: 0 0 2rem; }
   ul { padding-left: 1.25rem; }
   li { margin: .4rem 0; }
@@ -33,7 +34,7 @@
 <body>
 
 <h1>Политика за поверителност — LearnBites</h1>
-<p class="meta">Последна промяна: 16 август 2026 г.</p>
+<p class="meta">Последна промяна: 29 август 2026 г.</p>
 <p class="lang"><a href="#english">Read this in English ↓</a></p>
 
 <p>
@@ -71,53 +72,141 @@
   </li>
   <li>
     <strong>Текстът на въпроса отива първо при сървър, който разработчикът поддържа сам</strong>
-    (<code>api.learnbites.dimitrovd.dev</code>). Този сървър проверява дали заявката идва от
-    приложението и дали е с допустим размер и вид, и я предава нататък непроменена. Той
-    <strong>не чете въпроса и не го записва никъде</strong> — какво точно записва и какво не,
-    пише в следващия раздел.
+    (<code>api.learnbites.dimitrovd.dev</code>). Този сървър вече не само предава заявката нататък —
+    <strong>той съставя и отговора</strong>. Указанията, които казват на модела как да говори с
+    единайсетгодишно дете, вече не стоят в приложението на телефона, а на сървъра. Затова сървърът
+    <strong>чете въпроса</strong>: сглобява него и тези указания в едно и изпраща цялото нататък.
+    Какво прави и какво не прави с прочетеното, пише веднага след този списък.
   </li>
   <li>
     <strong>Оттам въпросът отива при Anthropic</strong>, която генерира отговора и рисунката.
-    Изпраща се само текстът на въпроса — не се изпраща запис на гласа, име или каквото и да е,
-    което идентифицира детето. Указанията, които приложението дава на модела, изрично му забраняват
-    да пита кой е насреща.
+    Изпраща се само текстът на въпроса — понякога в двата варианта, които разпознаването на речта е
+    предложило за едно и също изречение, защото изборът между тях се прави от модела. Не се изпраща
+    запис на гласа, име или каквото и да е, което идентифицира детето. Указанията към модела —
+    вече на сървъра — изрично му забраняват да пита кой е насреща и да иска име, адрес или училище.
   </li>
 </ul>
+
+<h3>Трите обещания, и за какво важи всяко</h3>
 <p>
-  <strong>Въпросът може да бъде обработен извън Европейския съюз.</strong> Anthropic е дружество
-  със седалище в САЩ и обработва заявките в регион по свой избор. Междинният сървър се намира във
-  Франкфурт, но това <strong>не</strong> означава, че данните остават в Европа и не бива да се чете
-  така — той само предава заявката нататък и няма контрол върху това къде отива тя. Какво прави
-  Anthropic с нея, се урежда от политиката за поверителност на Anthropic.
+  Сървърът върши две различни неща с една заявка, и за тях не може да се даде едно и също обещание.
+  Затова обещанията тук са три, и всяко е написано така, че да важи точно за своята част. Едно общо
+  изречение би било или невярно, или толкова меко, че да не значи нищо.
+</p>
+<ul>
+  <li>
+    <strong>Сървърът не пази нищо.</strong> Това важи за целия сървър и за всяка заявка. Няма база
+    данни, няма файлове, няма запомнени сесии и няма нищо, което да остава между една заявка и
+    следващата. Машината дори заспива между два въпроса. Това е обещанието, което всъщност има
+    значение, и то не се променя от нищо по-долу.
+  </li>
+  <li>
+    <strong>Частта, която само предава заявката, не чете нищо от нея.</strong> Рисунката все още
+    минава по този по-стар път: заявката се проверява дали идва от приложението и дали е с допустим
+    размер и вид, четат се две технически полета, а останалото се прескача, без да бъде разгледано,
+    и се предава непроменено. Тази част ще отпадне, когато приложението спре да я вика.
+  </li>
+  <li>
+    <strong>Частта, която съставя отговора, чете — в паметта, за времето на една заявка — и не
+    запазва нито въпроса, нито отговора.</strong> Тя трябва да прочете въпроса, за да го сглоби с
+    указанията, и трябва да прочете отговора на модела, за да провери, че е с очаквания вид. И
+    двете живеят само докато трае заявката. Няма запомнен отговор за същия въпрос, няма архив и
+    няма нищо, което да ги надживее.
+  </li>
+</ul>
+
+<h3>Заявките не казват от кой телефон идват</h3>
+<p>
+  И трите инсталации се представят пред сървъра с един и същ ключ за достъп. В заявката няма номер,
+  име, идентификатор на устройство или каквото и да е друго, което да казва коя от тях пита — не
+  защото се изтрива, а защото никога не се изпраща. Сървърът няма как да събере въпросите на едно
+  дете на едно място, дори да искаше.
 </p>
 <p>
-  Освен изброените, никой друг не получава въпросите. Машините на междинния сървър се предоставят
-  от хостинг платформата <strong>Fly.io</strong>, а DNS на домейна е при <strong>Cloudflare</strong>
-  — нарочно настроен така, че Cloudflare само превежда името на адрес, без да пренася и без да
-  разчита самите заявки. Никакви данни не се продават, не се дават под наем и не се предоставят на
-  рекламодатели.
+  Точността тук има значение и няма да се твърди повече от вярното: <strong>това е твърдение за
+  самата заявка, не за целия свят.</strong> Докато една заявка пътува през интернет, мрежовият
+  адрес, от който идва, се вижда — така работи мрежата и това важи за всяка услуга. Самият сървър
+  записва такъв адрес <strong>само когато проверката на достъпа е неуспешна</strong>, тоест когато
+  заявката идва от нещо, което не е приложението.
 </p>
 
-<h2>Какво записва междинният сървър</h2>
+<h3>Вечерното напомняне и старите въпроси</h3>
 <p>
-  Този сървър съществува по една причина: ключът, с който се плащат отговорите, вече не е вътре в
-  приложението на телефона, а стои на сървъра. Това е промяна в полза на сигурността, но тя вкарва
-  още една спирка по пътя на въпроса — затова тук пише точно какво тази спирка вижда и какво пази.
+  Веднъж дневно приложението може да предложи въпрос, който детето не е задавало — нещо, което може
+  да го заинтересува. Темата не се избира на телефона, а на сървъра. За да бъде избрана,
+  <strong>на сървъра се изпращат самите стари въпроси</strong>: до последните тридесет, само техният
+  текст, най-новите отгоре.
 </p>
-<p>За всяка заявка се записва <strong>един ред</strong>, който съдържа:</p>
+<p>
+  Не се изпращат отговорите, рисунките, часовете, в които въпросите са зададени, нито записите на
+  гласа. Списъкът не е подбран — това е, което детето е питало. Сървърът го прочита, избира тема и
+  връща един-единствен въпрос; тридесетте изчезват заедно със заявката, както всичко останало.
+</p>
+<p>
+  <strong>Това е промяна, която си струва да се каже направо.</strong> Досега от телефона излизаше
+  по един въпрос в момента, в който е зададен. Оттук нататък веднъж дневно излизат наведнъж и
+  старите. Пътуват до същия сървър, по същия път и със същите три обещания по-горе — но че пътуват
+  изобщо, е нещо, което родител би искал да знае, а не подробност.
+</p>
+
+<h3>Къде се обработва</h3>
+<p>
+  <strong>Въпросът може да бъде обработен извън Европейския съюз.</strong> Anthropic е дружество
+  със седалище в САЩ и обработва заявките в регион по свой избор. Сървърът на разработчика се
+  намира във Франкфурт, но това <strong>не</strong> означава, че данните остават в Европа и не бива
+  да се чете така — той изпраща заявката нататък и няма контрол върху това къде отива тя. Какво
+  прави Anthropic с нея, се урежда от политиката за поверителност на Anthropic.
+</p>
+<p>
+  Освен изброените, никой друг не получава въпросите. Машините на сървъра се предоставят от хостинг
+  платформата <strong>Fly.io</strong>, а DNS на домейна е при <strong>Cloudflare</strong> — нарочно
+  настроен така, че Cloudflare само превежда името на адрес, без да пренася и без да разчита самите
+  заявки. Никакви данни не се продават, не се дават под наем и не се предоставят на рекламодатели.
+</p>
+
+<h2>Какво записва сървърът</h2>
+<p>
+  Този сървър съществува по две причини. Ключът, с който се плащат отговорите, вече не е вътре в
+  приложението на телефона, а стои на сървъра; и думите, с които приложението говори, вече също са
+  на сървъра, за да може да бъдат поправяни, без да се чака ново издание в Google Play. И двете са
+  промени към добро, но втората означава, че сървърът чете въпроса — затова тук пише точно какво
+  остава след него.
+</p>
+<p>За всяка заявка се записва <strong>един ред</strong>. Всеки ред съдържа:</p>
 <ul>
   <li>момента на заявката;</li>
-  <li>адреса на крайната точка (една-единствена, приложението не използва друга);</li>
+  <li>адреса на крайната точка — коя от няколкото е била извикана;</li>
   <li>дали проверката на достъпа е минала;</li>
-  <li>какъв е бил отговорът отсреща — числов код;</li>
+  <li>какъв е бил отговорът — числов код;</li>
   <li>колко е продължила заявката;</li>
   <li>и когато самият сървър е отказал заявката — коя от собствените му проверки я е отказала.</li>
 </ul>
+<p>Когато заявката е стигнала до модела, редът съдържа и:</p>
+<ul>
+  <li>
+    колко текст е бил обработен и колко върнат — числа, с които се следи сметката, а не самият текст;
+  </li>
+  <li>
+    кой от трите начина за отговор е бил избран — тоест дали е било нарисувано нещо;
+  </li>
+  <li>
+    и когато нещо не е било наред — <strong>дума от предварително определен списък</strong>,
+    написана в кода на сървъра. Тук влиза и случаят, в който въпросът е бил пренасочен, вместо
+    отговорен: в реда стои, че е бил, но никъде не стои какъв е бил.
+  </li>
+</ul>
 <p>
-  <strong>Този ред не съдържа въпроса, отговора, рисунката или указанията към модела</strong> — нито
-  в съкратен вид, нито в текст на грешка, на никакво ниво и в никаква среда. Сървърът е написан така,
-  че да не разчита съдържанието на заявката изобщо: от нея се четат само две технически полета, а
-  всичко останало се прескача, без да бъде разгледано.
+  <strong>Нито един такъв ред не съдържа въпроса, отговора, рисунката, изречението, от което се
+  рисува, или указанията към модела</strong> — нито в съкратен вид, нито в текст на грешка, на
+  никакво ниво и в никаква среда.
+</p>
+<p>
+  Това не е обещание за внимание, а начин, по който сървърът е написан, и затова може да му се
+  държи сметка. Частта, която само предава заявката, изобщо не разчита съдържанието ѝ: чете две
+  технически полета и прескача останалото. А частта, която чете въпроса, няма как да го изпише в
+  дневника, защото всяко нейно оплакване минава оттам като <strong>число или като дума от затворен
+  списък</strong> — например „отговорът е твърде дълъг“, но никога самият отговор. Думите остават
+  на телефона.
 </p>
 <p>
   <strong>IP адресът се записва само когато проверката на достъпа е неуспешна</strong> — тоест
@@ -136,6 +225,11 @@
   <li>
     <strong>Историята</strong> — последните до 30 въпроса с отговорите им — се пази във вътрешната
     памет на приложението, за да може детето да се върне към нещо, което вече е видяло.
+  </li>
+  <li>
+    <strong>Един подготвен отговор.</strong> Въпросът за вечерното напомняне и отговорът към него се
+    изтеглят предварително и стоят в отделен малък файл, за да се появят веднага при отваряне, без
+    да се чака мрежа. Отвори ли го детето, той влиза в историята и файлът се изпразва.
   </li>
   <li>
     <strong>Записите на гласа</strong> се пазят като WAV файлове в папката на приложението
@@ -161,6 +255,11 @@
   <li>Няма акаунти, няма профили, няма синхронизация между устройства.</li>
   <li>Няма чат с други хора. Детето не може да се свърже с никого през приложението.</li>
   <li>Нищо не се публикува и нищо не се вижда от други потребители.</li>
+  <li>
+    Няма профилиране и няма насочване. Темата на вечерното напомняне идва от собствените въпроси на
+    детето и от нищо друго — няма сравнение с други хора, а напомнянето идва в един и същ час на
+    всички телефони.
+  </li>
 </ul>
 
 <h2>Деца</h2>
@@ -178,13 +277,14 @@
 <h2>Изтриване на данните</h2>
 <p>
   Всичко, което приложението пази, се намира на самия телефон. <strong>Деинсталирането на
-  приложението изтрива всичко</strong> — историята и записите заедно с нея. Може и само част:
-  папката <code>Android/data/dev.dimitrovd.learnbites/</code> може да бъде изтрита през файловия
-  мениджър на телефона.
+  приложението изтрива всичко</strong> — историята, подготвеният отговор и записите заедно с нея.
+  Може и само част: папката <code>Android/data/dev.dimitrovd.learnbites/</code> може да бъде
+  изтрита през файловия мениджър на телефона.
 </p>
 <p>
-  На междинния сървър няма какво да се изтрива: там не се пази нищо от съдържанието на въпросите, а
-  техническите редове, описани по-горе, изчезват сами след около седмица.
+  На сървъра няма какво да се изтрива: там не се пази нищо от съдържанието на въпросите — нито
+  отделният въпрос, нито списъкът със стари въпроси, изпратен за напомнянето — а техническите
+  редове, описани по-горе, изчезват сами след около седмица.
 </p>
 <p>
   Данните, които вече са стигнали до Google и Anthropic, се управляват от техните политики; за
@@ -193,10 +293,14 @@
 
 <h2>Промени в тази политика</h2>
 <p>
-  До август 2026 г. приложението изпращаше въпросите директно от телефона към Anthropic. Вече не:
-  между телефона и Anthropic стои сървърът, описан по-горе. Този документ беше пренаписан заради
-  тази промяна и датата най-горе е датата на пренаписването. При всяка следваща промяна в начина, по
-  който въпросите пътуват, документът се обновява и датата се променя отново.
+  До август 2026 г. приложението изпращаше въпросите директно от телефона към Anthropic. През август
+  между телефона и Anthropic застана сървърът, описан по-горе, който тогава само предаваше заявката
+  нататък. От версията, която този документ описва, същият сървър <strong>съставя и отговора</strong>:
+  указанията към модела се преместиха от приложението на сървъра, а веднъж дневно към него тръгват и
+  <strong>старите въпроси</strong>, за да бъде избрана тема за вечерното напомняне. Този документ
+  беше пренаписан заради тези промени и датата най-горе е датата на пренаписването. При всяка
+  следваща промяна в начина, по който въпросите пътуват, документът се обновява и датата се променя
+  отново.
 </p>
 
 <h2>Контакт</h2>
@@ -207,7 +311,7 @@
 <hr>
 
 <h1 id="english">Privacy Policy — LearnBites</h1>
-<p class="meta">Last updated: 16 August 2026</p>
+<p class="meta">Last updated: 29 August 2026</p>
 
 <p>
   LearnBites (package <code>dev.dimitrovd.learnbites</code>) is an app made by
@@ -244,54 +348,145 @@
   </li>
   <li>
     <strong>The text of the question goes first to a server the developer runs himself</strong>
-    (<code>api.learnbites.dimitrovd.dev</code>). That server checks that the request came from the
-    app and that it is of an acceptable size and shape, and passes it on unchanged. It
-    <strong>does not read the question and does not record it anywhere</strong> — what it does and
-    does not write down is the next section.
+    (<code>api.learnbites.dimitrovd.dev</code>). That server no longer merely passes the request on —
+    <strong>it composes the answer as well</strong>. The instructions that tell the model how to
+    speak to an eleven-year-old no longer sit in the app on the phone; they sit on the server. So the
+    server <strong>reads the question</strong>: it puts the question and those instructions together
+    and sends the whole thing on. What it does and does not do with what it has read is written
+    immediately after this list.
   </li>
   <li>
     <strong>From there the question goes to Anthropic</strong>, which generates the answer and the
-    drawing. Only the question text is sent — no voice recording, no name, and nothing that
-    identifies the child. The instructions the app gives the model explicitly forbid it from asking
-    who it is talking to.
+    drawing. Only the question text is sent — sometimes in the two variants speech recognition
+    offered for the same sentence, because choosing between them is the model's job. No voice
+    recording, no name, and nothing that identifies the child. The instructions given to the model —
+    now on the server — explicitly forbid it from asking who it is talking to, or asking for a name,
+    an address, or a school.
   </li>
 </ul>
+
+<h3>The three promises, and what each one is about</h3>
 <p>
-  <strong>The question may be processed outside the European Union.</strong> Anthropic is a company
-  based in the USA and processes requests in whichever region it chooses. The intermediate server is
-  located in Frankfurt, but that does <strong>not</strong> mean the data stays in Europe and should
-  not be read that way — the server only passes the request on and has no control over where it goes
-  next. What Anthropic does with it is governed by Anthropic's own privacy policy.
+  The server does two different things with a request, and the same promise cannot honestly be made
+  about both. So there are three promises here, each written to be true of its own part. A single
+  sentence covering all of it would be either untrue or so soft as to mean nothing.
+</p>
+<ul>
+  <li>
+    <strong>The server keeps nothing.</strong> This is true of the whole server and of every request.
+    There is no database, no files, no remembered sessions, and nothing that survives from one
+    request to the next. The machine even goes to sleep between questions. This is the promise that
+    actually matters, and nothing below changes it.
+  </li>
+  <li>
+    <strong>The part that only passes a request on never reads it.</strong> The drawing still travels
+    by that older path: the request is checked for coming from the app and for being of an acceptable
+    size and shape, two technical fields are read, everything else is stepped over without being
+    looked at, and it is passed on unchanged. This part goes away once the app stops calling it.
+  </li>
+  <li>
+    <strong>The part that composes the answer does read — in memory, for the length of one request —
+    and keeps neither the question nor the answer.</strong> It has to read the question in order to
+    put it together with the instructions, and it has to read the model's reply in order to check
+    that it has the expected shape. Both live only as long as the request does. There is no
+    remembered answer for a repeated question, no archive, and nothing that outlives the request.
+  </li>
+</ul>
+
+<h3>Requests do not say which phone they came from</h3>
+<p>
+  All three installations present the server with the same access key. A request carries no number,
+  no name, no device identifier, and nothing else that says which of them is asking — not because it
+  is stripped, but because it is never sent. The server has no way to gather one child's questions
+  in one place, even if it wanted to.
 </p>
 <p>
-  Beyond those named above, nobody else receives the questions. The machines the intermediate server
-  runs on are provided by the hosting platform <strong>Fly.io</strong>, and the domain's DNS is at
+  The precision matters here, and no more than the truth will be claimed: <strong>this is a statement
+  about the request, not about the universe.</strong> While a request travels across the internet the
+  network address it comes from is visible — that is how the network works, and it is true of every
+  service. The server itself records such an address <strong>only when the access check fails</strong>
+  — that is, when the request came from something that is not the app.
+</p>
+
+<h3>The evening reminder, and the older questions</h3>
+<p>
+  Once a day the app may offer a question the child did not ask — something it thinks she might find
+  interesting. The topic is not chosen on the phone but on the server. In order to choose it,
+  <strong>the older questions themselves are sent to the server</strong>: up to the last thirty, the
+  text of them only, newest first.
+</p>
+<p>
+  The answers, the drawings, the times the questions were asked, and the voice recordings are not
+  sent. The list is not filtered — it is what the child asked. The server reads it, picks a topic and
+  returns a single question; the thirty disappear along with the request, like everything else.
+</p>
+<p>
+  <strong>This is a change worth saying plainly.</strong> Until now one question left the phone at
+  the moment it was asked. From here on, once a day, the older ones leave together. They travel to
+  the same server, by the same path, under the same three promises above — but that they travel at
+  all is something a parent would want to know, not a detail.
+</p>
+
+<h3>Where it is processed</h3>
+<p>
+  <strong>The question may be processed outside the European Union.</strong> Anthropic is a company
+  based in the USA and processes requests in whichever region it chooses. The developer's server is
+  located in Frankfurt, but that does <strong>not</strong> mean the data stays in Europe and should
+  not be read that way — it sends the request onward and has no control over where it goes next.
+  What Anthropic does with it is governed by Anthropic's own privacy policy.
+</p>
+<p>
+  Beyond those named above, nobody else receives the questions. The machines the server runs on are
+  provided by the hosting platform <strong>Fly.io</strong>, and the domain's DNS is at
   <strong>Cloudflare</strong> — deliberately configured so that Cloudflare only translates the name
   into an address, without carrying and without decrypting the requests themselves. No data is sold,
   rented, or given to advertisers.
 </p>
 
-<h2>What the intermediate server records</h2>
+<h2>What the server records</h2>
 <p>
-  That server exists for one reason: the credential that pays for the answers is no longer inside the
-  app on the phone, but sits on the server instead. That is a change for the better in terms of
-  security, but it puts one more stop on the question's path — so what that stop sees and what it
-  keeps is written out here exactly.
+  That server exists for two reasons. The credential that pays for the answers is no longer inside
+  the app on the phone but sits on the server instead; and the words the app speaks now sit there
+  too, so that they can be corrected without waiting for a new release on Google Play. Both are
+  changes for the better, but the second one means the server reads the question — so what is left
+  behind afterwards is written out here exactly.
 </p>
-<p>For each request, <strong>a single line</strong> is written, containing:</p>
+<p>For each request, <strong>a single line</strong> is written. Every line contains:</p>
 <ul>
   <li>the time of the request;</li>
-  <li>the endpoint it was addressed to (there is only one; the app uses no other);</li>
+  <li>the endpoint it was addressed to — which of the few it was;</li>
   <li>whether the access check passed;</li>
-  <li>what the answer from the other side was — a numeric status code;</li>
+  <li>what the answer was — a numeric status code;</li>
   <li>how long the request took;</li>
   <li>and, when the server itself refused the request, which of its own checks refused it.</li>
 </ul>
+<p>When the request reached the model, the line also contains:</p>
+<ul>
+  <li>
+    how much text was processed and how much came back — numbers the bill is watched with, not the
+    text itself;
+  </li>
+  <li>
+    which of the three ways of answering was chosen — that is, whether anything was drawn;
+  </li>
+  <li>
+    and, when something was not right, <strong>a word from a fixed list</strong> written in the
+    server's own code. That includes the case where a question was redirected rather than answered:
+    the line records that it was, and nowhere records what it was.
+  </li>
+</ul>
 <p>
-  <strong>That line does not contain the question, the answer, the drawing, or the instructions given
-  to the model</strong> — not in shortened form, not inside an error message, at no level and in no
-  environment. The server is written so that it does not read the content of a request at all: only
-  two technical fields are taken from it, and everything else is stepped over without being looked at.
+  <strong>No such line contains the question, the answer, the drawing, the sentence the drawing is
+  made from, or the instructions given to the model</strong> — not in shortened form, not inside an
+  error message, at no level and in no environment.
+</p>
+<p>
+  That is not a promise to be careful but the way the server is written, which is what makes it
+  something to be held to. The part that only passes a request on does not read its content at all:
+  it takes two technical fields and steps over the rest. And the part that does read the question has
+  no way to write it into the log, because every complaint it makes crosses as <strong>a number or a
+  word from a closed list</strong> — "the answer is too long", say, but never the answer. The words
+  stay on the phone.
 </p>
 <p>
   <strong>The IP address is recorded only when the access check fails</strong> — that is, when the
@@ -310,6 +505,12 @@
   <li>
     <strong>The history</strong> — the most recent 30 questions and their answers — is kept in the
     app's own storage so the child can go back to something already seen.
+  </li>
+  <li>
+    <strong>One prepared answer.</strong> The question for the evening reminder and its answer are
+    fetched in advance and sit in a small separate file, so that they appear immediately when opened
+    without waiting for the network. Once the child opens it, it moves into the history and the file
+    is emptied.
   </li>
   <li>
     <strong>The voice recordings</strong> are kept as WAV files in the app's folder
@@ -334,6 +535,11 @@
   <li>No accounts, no profiles, no syncing between devices.</li>
   <li>No chat with other people. The child cannot reach anyone through the app.</li>
   <li>Nothing is published and nothing is visible to other users.</li>
+  <li>
+    No profiling and no targeting. The topic of the evening reminder comes from the child's own
+    questions and from nothing else — there is no comparison with other people, and the reminder
+    arrives at the same hour on every phone.
+  </li>
 </ul>
 
 <h2>Children</h2>
@@ -351,13 +557,14 @@
 <h2>Deleting the data</h2>
 <p>
   Everything the app keeps is on the phone itself. <strong>Uninstalling the app deletes all of
-  it</strong> — the history and the recordings with it. Part of it can be removed on its own: the
-  folder <code>Android/data/dev.dimitrovd.learnbites/</code> can be deleted through the phone's file
-  manager.
+  it</strong> — the history, the prepared answer, and the recordings with them. Part of it can be
+  removed on its own: the folder <code>Android/data/dev.dimitrovd.learnbites/</code> can be deleted
+  through the phone's file manager.
 </p>
 <p>
-  On the intermediate server there is nothing to delete: none of the content of the questions is kept
-  there, and the technical lines described above disappear on their own after about a week.
+  On the server there is nothing to delete: none of the content of the questions is kept there —
+  neither a single question nor the list of older ones sent for the reminder — and the technical
+  lines described above disappear on their own after about a week.
 </p>
 <p>
   Data that has already reached Google and Anthropic is governed by their policies; for questions
@@ -366,10 +573,14 @@
 
 <h2>Changes to this policy</h2>
 <p>
-  Until August 2026 the app sent questions directly from the phone to Anthropic. It no longer does:
-  the server described above now stands between the phone and Anthropic. This document was rewritten
-  because of that change, and the date at the top is the date of the rewrite. Any further change to
-  the way questions travel updates this document and moves that date again.
+  Until August 2026 the app sent questions directly from the phone to Anthropic. In August the server
+  described above came to stand between the phone and Anthropic, at that point only passing the
+  request on. From the version this document describes, that same server
+  <strong>composes the answer too</strong>: the instructions given to the model moved out of the app
+  and onto the server, and once a day the <strong>older questions</strong> travel to it as well, so
+  that a topic can be chosen for the evening reminder. This document was rewritten because of those
+  changes, and the date at the top is the date of the rewrite. Any further change to the way
+  questions travel updates this document and moves that date again.
 </p>
 
 <h2>Contact</h2>
