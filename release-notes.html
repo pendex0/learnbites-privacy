@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новостите — LearnBites</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    color: #1a1a1a;
+    background: #fdfcf8;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e8e6e1; background: #161614; }
+    a { color: #8ab4f8; }
+    hr { border-color: #3a3a36; }
+    .meta { color: #9a978f; }
+  }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .25rem; }
+  h2 { font-size: 1.15rem; margin: 2.25rem 0 .5rem; }
+  h3 { font-size: 1rem; margin: 1.75rem 0 .4rem; }
+  .meta { color: #6b6862; font-size: .9rem; margin: 0 0 2rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .4rem 0; }
+  hr { border: 0; border-top: 1px solid #ddd9d0; margin: 3.5rem 0; }
+  .lang { font-size: .9rem; margin-bottom: 2rem; }
+  code { font-size: .9em; background: rgba(128,128,128,.15); padding: .1em .35em; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>Новостите — LearnBites</h1>
+<p class="meta">Какво се промени във всяка версия. Най-новото е най-отгоре.</p>
+<p class="lang"><a href="#english">Read this in English ↓</a></p>
+
+<p>
+  LearnBites е личен проект, не търговски продукт, и се разпространява до малък кръг тестери.
+  Пълната политика за поверителност е
+  <a href="https://pendex0.github.io/learnbites-privacy/">тук</a>.
+</p>
+
+<h2>Версия 1.0.0 (9)</h2>
+<p>
+  До връзката към политиката за поверителност, в долния край на списъка с твоите въпроси, вече
+  стои номерът на версията. Натисни го и се отваря тази страница.
+</p>
+
+<h2>Версия 1.0.0</h2>
+<p>
+  LearnBites е малък гласов учител. Натискаш микрофона, задаваш въпрос на глас на български, и
+  приложението отговаря с няколко изречения — и рисува отговора, когато картинка обяснява това,
+  което изречение не може.
+</p>
+<p>
+  Това е първата версия, в която приложението спира да бъде цялата система: отговорът вече се
+  съставя на сървър.
+</p>
+<ul>
+  <li>
+    <strong>Отговорът се съставя на сървър.</strong> Досега всичко, което учителят знаеше за това
+    как да говори, стоеше вътре в приложението, и промяната на една дума означаваше ново издание
+    за всеки телефон. Сега приложението само сглобява въпроса, прави едно повикване и рисува
+    резултата; текстът се настройва на сървъра и промяната стига до всички наведнъж.
+  </li>
+  <li>
+    <strong>Едно предложение на ден.</strong> Веднъж дневно, следобед, приложението може да
+    предложи въпрос, който никой не е задавал, избран измежду вече засяганите теми. Най-много
+    едно на ден, никакво в ден, в който приложението вече е било отваряно, и нищо
+    готово-консервирано — ако няма подготвен отговор, известие не се праща. Разрешението за
+    известия се иска веднъж, след втория отговорен въпрос, а не при първото пускане.
+  </li>
+  <li>
+    <strong>Поверителност.</strong> Препращащата спирка пред модела отпадна. Сървърът не пази
+    нищо между заявките, и нищо в системата не показва кой пита — няма акаунт, вход, профил или
+    регистрация. Въпросите и отговорите остават на телефона.
+  </li>
+  <li>
+    <strong>Скорост.</strong> Отговорът идва за около 8–15 секунди. Готовата рисунка отнема
+    повече — обикновено под минута, понякога малко над. Всяко от двете повиквания има фиксиран
+    краен срок и се отказва видимо, ако го подмине; приложението не увисва.
+  </li>
+  <li>
+    <strong>Разрешения.</strong> Микрофон (единственият вход — всеки въпрос е изговорен), интернет
+    (за връзка с учителя) и известия (за дневното предложение, по избор). Две разрешения, които
+    приложението никога не е ползвало — наслагване върху екрана и вибрация — бяха махнати.
+  </li>
+</ul>
+<p><strong>Известни ограничения:</strong></p>
+<ul>
+  <li>
+    Последващ въпрос се праща като нов. Приложението предлага цели последващи въпроси под всеки
+    отговор, но тапването праща само думите, които виждаш — без предишния отговор. Въпрос,
+    формулиран все едно продължава разговор, може да получи отговор извън него.
+  </li>
+  <li>
+    Понякога подготвеният отговор идва без рисунката си (около един на десет при тестване).
+    Отговорът е верен, картинката липсва, и приложението показва само думите.
+  </li>
+</ul>
+
+<hr>
+
+<h1 id="english">Release notes — LearnBites</h1>
+<p class="meta">What changed in each version. Newest first.</p>
+
+<p>
+  LearnBites is a personal project rather than a commercial product, distributed to a small group
+  of testers. The full privacy policy is
+  <a href="https://pendex0.github.io/learnbites-privacy/#english">here</a>.
+</p>
+
+<h2>Version 1.0.0 (9)</h2>
+<p>
+  Next to the privacy policy link, at the bottom of your list of questions, there is now a version
+  number. Tapping it opens this page.
+</p>
+
+<h2>Version 1.0.0</h2>
+<p>
+  LearnBites is a small voice tutor. You press the microphone, ask a question out loud in
+  Bulgarian, and it answers in a couple of short lines — and draws the answer whenever a picture
+  teaches what a sentence cannot.
+</p>
+<p>
+  This is the first version where the app stops being the whole system: the answer is now composed
+  on a server.
+</p>
+<ul>
+  <li>
+    <strong>The answer is composed on a server.</strong> Until now everything the tutor knew about
+    how to speak lived inside the installed app, and changing a word of it meant shipping a new
+    version to every phone. Now the app just assembles the question, makes one call and draws the
+    result; the wording is tuned on the server and the change reaches everyone at once.
+  </li>
+  <li>
+    <strong>One suggestion a day.</strong> Once a day, in the late afternoon, the app can offer a
+    question nobody asked, chosen from topics already asked about before. At most one a day, none
+    on a day the app was already used, and nothing canned — if there is no prepared answer waiting,
+    no notification is posted. The notification permission is asked once, after the second answered
+    question, never on first launch.
+  </li>
+  <li>
+    <strong>Privacy.</strong> The forwarding hop in front of the model is gone. The server keeps
+    nothing between requests, and nothing in the system identifies who is asking — no account, no
+    sign-in, no profile, no registration. Questions and answers stay on the phone.
+  </li>
+  <li>
+    <strong>Speed.</strong> An answer arrives in about 8 to 15 seconds. A finished drawing takes
+    longer — usually well under a minute, occasionally more. Each of the two calls has a fixed
+    deadline and gives up visibly when it is passed; the app does not hang.
+  </li>
+  <li>
+    <strong>Permissions.</strong> Microphone (the only way in — every question is spoken), internet
+    (reaching the tutor) and notifications (the daily suggestion, optional). Two permissions the
+    app had never used — a screen overlay and vibration — were removed.
+  </li>
+</ul>
+<p><strong>Known limitations:</strong></p>
+<ul>
+  <li>
+    A follow-up is sent as a fresh question. The app offers whole follow-up questions under each
+    answer, but tapping one sends only the words you can see — without the previous answer. A
+    follow-up phrased as though it continues a conversation can be answered outside it.
+  </li>
+  <li>
+    A prepared answer occasionally arrives without its drawing (roughly one in ten during testing).
+    The answer is correct, the picture is missing, and the app falls back to the words alone.
+  </li>
+</ul>
+
+</body>
+</html>

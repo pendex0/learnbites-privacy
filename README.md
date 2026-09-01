@@ -6,6 +6,12 @@ plain page so it has a stable public URL.
 - **Live:** https://pendex0.github.io/learnbites-privacy/
 - **Source:** `index.html` — one file, no build step, no dependencies.
 
+The same repository also hosts the app's release notes at
+https://pendex0.github.io/learnbites-privacy/release-notes.html (`release-notes.html`), linked from
+the version number shown inside the app. It rides here rather than in its own repository for the same
+reason the policy does: the app's source repository is private. Same rules as below — edit the file,
+keep both language sections in step, push to `main`.
+
 ## Why this is its own repository
 
 Google Play requires every app to declare a privacy policy at an active, publicly accessible,
