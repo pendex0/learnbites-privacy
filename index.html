@@ -34,7 +34,7 @@
 <body>
 
 <h1>Политика за поверителност — LearnBites</h1>
-<p class="meta">Последна промяна: 1 септември 2026 г.</p>
+<p class="meta">Последна промяна: 14 октомври 2026 г.</p>
 <p class="lang"><a href="#english">Read this in English ↓</a></p>
 
 <p>
@@ -44,14 +44,15 @@
   човека, който го използва.
 </p>
 <p>
-  Приложението работи така: детето натиска микрофона, задава въпрос на глас, а приложението
-  отговаря с текст и рисунка. Всичко, което следва, произтича от този един ход.
+  Приложението работи така: детето натиска микрофона и задава въпрос на глас — или, от версия
+  1.2.0, го написва — а приложението отговаря с текст и рисунка. Всичко, което следва, произтича
+  от този един ход.
 </p>
 
 <h2>Какво събира приложението</h2>
 <ul>
   <li><strong>Запис на гласа.</strong> Докато микрофонът е активен, приложението записва звука.</li>
-  <li><strong>Текста на въпроса</strong>, получен от разпознаването на речта.</li>
+  <li><strong>Текста на въпроса</strong> — получен от разпознаването на речта или написан.</li>
   <li><strong>Въпросите и отговорите</strong>, заедно с момента, в който са зададени.</li>
 </ul>
 <p>
@@ -69,6 +70,8 @@
     разпознаване, защото за български език няма модел, който да работи офлайн на телефона. Това
     означава, че записаният глас се изпраща към сървърите на Google, за да бъде превърнат в текст.
     Какво прави Google с него, се урежда от политиката за поверителност на Google.
+    <strong>Написаният въпрос не минава оттук</strong>: няма глас и няма запис, и до Google не
+    стига нищо.
   </li>
   <li>
     <strong>Текстът на въпроса отива първо при сървър, който разработчикът поддържа сам</strong>
@@ -188,6 +191,14 @@
     кой от трите начина за отговор е бил избран — тоест дали е било нарисувано нещо;
   </li>
   <li>
+    кой модел е отговорил и колко усилие му е било позволено — имена и числа от настройките,
+    не от въпроса;
+  </li>
+  <li>
+    дали телефонът се е отказал, преди отговорът да пристигне — например защото детето е
+    оттеглило въпроса;
+  </li>
+  <li>
     и когато нещо не е било наред — <strong>дума от предварително определен списък</strong>,
     написана в кода на сървъра. Тук влиза и случаят, в който въпросът е бил пренасочен, вместо
     отговорен: в реда стои, че е бил, но никъде не стои какъв е бил.
@@ -230,7 +241,8 @@
   <li>
     <strong>Записите на гласа</strong> се пазят като WAV файлове в папката на приложението
     (<code>Android/data/dev.dimitrovd.learnbites/files/</code>). Пазят се най-много 40 файла или
-    20 MB — при всяко стартиране на приложението по-старите се изтриват автоматично.
+    20 MB — при всяко стартиране на приложението по-старите се изтриват автоматично. Написаният
+    въпрос няма запис.
   </li>
   <li>
     <strong>Копие от историята</strong> се записва в същата папка като текстов файл.
@@ -278,6 +290,12 @@
   изтрита през файловия мениджър на телефона.
 </p>
 <p>
+  От версия 1.2.0 детето може да изтрие и един въпрос, от самото приложение. Задържан пръст върху
+  ред в списъка с въпроси пита дали да бъде забравен; „Забрави" маха въпроса и отговора от
+  историята и от копието ѝ и изтрива записа на гласа. Въпрос, оттеглен с ✕ докато се чака
+  отговорът или рисунката, не остава в историята изобщо, а записът му се изтрива веднага.
+</p>
+<p>
   На сървъра няма какво да се изтрива: там не се пази нищо от съдържанието на въпросите — нито
   отделният въпрос, нито списъкът със стари въпроси, изпратен за напомнянето — а техническите
   редове, описани по-горе, изчезват сами след около седмица.
@@ -295,7 +313,9 @@
   указанията към модела се преместиха от приложението на сървъра, а веднъж дневно към него тръгват и
   <strong>старите въпроси</strong>, за да бъде избрана тема за вечерното напомняне. През септември
   2026 г. препредаващата част беше премахната изцяло, след като всички телефони минаха на новия път;
-  затова обещанията по-горе вече са две вместо три. Датата най-горе е датата на последната промяна. При всяка
+  затова обещанията по-горе вече са две вместо три. През октомври 2026 г. (версия 1.2.0) въпросът
+  може и да се напише, без да минава през Google, а един въпрос може да бъде изтрит или оттеглен от
+  самото приложение; пътят на въпросите до сървъра и до Anthropic не се е променил. Датата най-горе е датата на последната промяна. При всяка
   следваща промяна в начина, по който въпросите пътуват, документът се обновява и датата се променя
   отново.
 </p>
@@ -308,7 +328,7 @@
 <hr>
 
 <h1 id="english">Privacy Policy — LearnBites</h1>
-<p class="meta">Last updated: 1 September 2026</p>
+<p class="meta">Last updated: 14 October 2026</p>
 
 <p>
   LearnBites (package <code>dev.dimitrovd.learnbites</code>) is an app made by
@@ -317,14 +337,15 @@
   of the person using it.
 </p>
 <p>
-  The app works like this: the child presses the microphone, asks a question out loud, and the app
-  answers with text and a drawing. Everything below follows from that single action.
+  The app works like this: the child presses the microphone and asks a question out loud — or, from
+  version 1.2.0, types it — and the app answers with text and a drawing. Everything below follows
+  from that single action.
 </p>
 
 <h2>What the app collects</h2>
 <ul>
   <li><strong>A recording of the voice.</strong> While the microphone is active, the app records the audio.</li>
-  <li><strong>The text of the question</strong>, as produced by speech recognition.</li>
+  <li><strong>The text of the question</strong> — as produced by speech recognition, or as typed.</li>
   <li><strong>The questions and answers</strong>, together with the time they were asked.</li>
 </ul>
 <p>
@@ -341,7 +362,8 @@
     app is meant for, that is Google's. The app requests online recognition because there is no
     Bulgarian model that runs offline on the phone. This means the recorded speech is sent to
     Google's servers to be turned into text. What Google does with it is governed by Google's own
-    privacy policy.
+    privacy policy. <strong>A typed question does not pass this way</strong>: there is no voice and
+    no recording, and nothing reaches Google.
   </li>
   <li>
     <strong>The text of the question goes first to a server the developer runs himself</strong>
@@ -465,6 +487,14 @@
     which of the three ways of answering was chosen — that is, whether anything was drawn;
   </li>
   <li>
+    which model answered and how much effort it was allowed — names and numbers from the settings,
+    not from the question;
+  </li>
+  <li>
+    whether the phone gave up before the answer arrived — for instance because the child took the
+    question back;
+  </li>
+  <li>
     and, when something was not right, <strong>a word from a fixed list</strong> written in the
     server's own code. That includes the case where a question was redirected rather than answered:
     the line records that it was, and nowhere records what it was.
@@ -508,7 +538,8 @@
   <li>
     <strong>The voice recordings</strong> are kept as WAV files in the app's folder
     (<code>Android/data/dev.dimitrovd.learnbites/files/</code>). At most 40 files or 20 MB are kept;
-    older ones are deleted automatically each time the app starts.
+    older ones are deleted automatically each time the app starts. A typed question has no
+    recording.
   </li>
   <li>
     <strong>A copy of the history</strong> is written to the same folder as a text file.
@@ -555,6 +586,13 @@
   through the phone's file manager.
 </p>
 <p>
+  From version 1.2.0 the child can also delete a single question from within the app. Pressing and
+  holding a row in the list of questions asks whether to forget it; „Забрави" removes the question
+  and its answer from the history and from its copy, and deletes the voice recording. A question
+  taken back with ✕ while the answer or the drawing is being made never stays in the history at
+  all, and its recording is deleted at once.
+</p>
+<p>
   On the server there is nothing to delete: none of the content of the questions is kept there —
   neither a single question nor the list of older ones sent for the reminder — and the technical
   lines described above disappear on their own after about a week.
@@ -573,7 +611,9 @@
   and onto the server, and once a day the <strong>older questions</strong> travel to it as well, so
   that a topic can be chosen for the evening reminder. In September 2026 the forwarding part was
   removed altogether, once every phone had moved to the new path, which is why the promises above are
-  now two rather than three. The date at the top is the date of the most recent change. Any further change to the way
+  now two rather than three. In October 2026 (version 1.2.0) a question can also be typed, without
+  passing through Google, and a single question can be deleted or taken back from within the app;
+  the path questions take to the server and to Anthropic did not change. The date at the top is the date of the most recent change. Any further change to the way
   questions travel updates this document and moves that date again.
 </p>
 
